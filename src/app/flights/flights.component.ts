@@ -122,6 +122,13 @@ export class FlightsComponent implements OnInit {
 
   calculateBestWay(request: Request) {
 
+    this.journey = {
+      Flights: [],
+      Origin: '',
+      Destination: '',
+      Price: 0,
+    };
+
     // Get all flights from origin
     const flightsFromOrigin = this.flights.filter((item: any) => item.origin === request.Origin);
 
@@ -132,10 +139,10 @@ export class FlightsComponent implements OnInit {
 
     if (directWay) {
       flights.push(directWay);
-      this.getJourneys(flights, request);
+      this.getJourney(flights, request);
       return;
     } else {
-
+      
       // First level
       for (let element of flightsFromOrigin) {
         // Check if best way is direct
@@ -147,13 +154,15 @@ export class FlightsComponent implements OnInit {
           // Validate if exists in second level
           const existsInSecondLevel = flightsFromDestinationSecondLevel.find((item: any) => item.destination === request.Destination);
 
+
           if (existsInSecondLevel) {
             flights.push(element);
             flights.push(existsInSecondLevel);
 
-            this.getJourneys(flights, request);
+            this.getJourney(flights, request);
+            
             return;
-
+            
           } else {
 
             // Third level
@@ -168,10 +177,10 @@ export class FlightsComponent implements OnInit {
                 flights.push(secondLevel);
                 flights.push(existsInThirdLevel);
 
-                this.getJourneys(flights, request);
+                this.getJourney(flights, request);
                 return;
-              }
-            }
+              } 
+            }            
           }
         }
       }
@@ -179,7 +188,7 @@ export class FlightsComponent implements OnInit {
 
   }
 
-  getJourneys(flights: any, request: Request) {
+  getJourney(flights: any, request: Request) {
 
     // Get Journey
     let journey: Journey = {
@@ -188,6 +197,8 @@ export class FlightsComponent implements OnInit {
       Destination: '',
       Price: 0,
     };
+
+    this.journey = journey;
 
     if (flights.length > 0) {
       if (flights.length === 1) {
@@ -198,13 +209,9 @@ export class FlightsComponent implements OnInit {
         journey.Flights.push(flights[0]);
 
       } else {
-        console.log('FLIGHTS: ', flights);
-        console.log('REQUEST: ', request);
-
 
         // Iterate flights to get all possibles journeys
         for (let element of flights) {
-          console.log('ELEMENT: ', element);
 
           // If element is equal to origin (first element)
           if (element.origin === request.Origin) {
@@ -230,6 +237,7 @@ export class FlightsComponent implements OnInit {
       console.log('JOURNEY: ', journey);
 
       if (journey.Flights.length > 0) {
+        this.journey = journey;
         this.openDialog('Su consulta ha sido procesada', 'success', '500px', '300px', journey);
       }
     }
@@ -270,6 +278,7 @@ export class FlightsComponent implements OnInit {
   }
 
   async openDialog(message: string, type: string, width: string = '500px', height: string = '150px', journey: Journey = this.journey) {
+    
     // If there is a modal, close it
     if (this.dialogObject) {
       this.dialogObject.close();
@@ -286,7 +295,8 @@ export class FlightsComponent implements OnInit {
         journey
       },
       width,
-      height
+      height,
+      disableClose: true
     });
 
   }

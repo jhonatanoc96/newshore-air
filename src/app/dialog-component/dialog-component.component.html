@@ -3,7 +3,7 @@
 </div>
 
 <div class="div-content-success" *ngIf="data.type === 'success'">
-    <div>
+    <div class="div-label">
         <label>
             A continuación se muestran los resultados de su consulta
         </label>
@@ -23,12 +23,12 @@
                 <td>{{data.journey.Price}}</td>
             </tr>
             <tr>
-                <td>Vuelo directo?</td>
+                <td>Vuelo directo</td>
                 <td>{{data.journey.Flights.length === 1 ? 'Si' : 'No'}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="data.journey.Flights.length > 1">
                 <td>Cantidad de escalas</td>
-                <td>{{data.journey.Flights.length === 1 ? 1 : data.journey.Flights.length}}</td>
+                <td>{{data.journey.Flights.length}}</td>
             </tr>
             <tr>
                 <td>Ruta:</td>
