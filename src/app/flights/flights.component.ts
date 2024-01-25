@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { origin, destination } from '../store/actions/actions-store';
 
 @Component({
   selector: 'app-flights',
@@ -8,10 +10,12 @@ import { FormBuilder } from '@angular/forms';
 })
 export class FlightsComponent implements OnInit {
 
-  public form: any;
+  public form: FormGroup;
+  public places$: any; // Observer to handle value of store (origin and destination)
 
   constructor(
     private formBuilder: FormBuilder,
+    private store: Store
   ) {
     this.form = this.formBuilder.group({
       origin: '',
@@ -21,11 +25,21 @@ export class FlightsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('FlightsComponent.ngOnInit()');
-    
+    // Subscribe to store to get values of origin and destination
+    this.places$ = this.store.pipe();
+    this.places$.subscribe((data: any) => {
+      console.log('OBTENIENDO VALOR DE ESTADO GLOBAL: ', data);
+    });
   }
 
-  onSubmit() {
-    console.warn('Your order has been submitted');
+  setOrigin(event: any) {
+    const newOrigin = event.target.value;
+    this.store.dispatch(origin({ newOrigin }));
   }
+  
+  setDestination(event: any) {
+    const newDestination = event.target.value;
+    this.store.dispatch(destination({ newDestination }));
+  }
+
 }
