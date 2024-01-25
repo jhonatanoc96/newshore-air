@@ -238,7 +238,7 @@ export class FlightsComponent implements OnInit {
 
       if (journey.Flights.length > 0) {
         this.journey = journey;
-        this.openDialog('Su consulta ha sido procesada', 'success', '500px', '300px', journey);
+        this.openDialog('Su consulta ha sido procesada', 'success', '500px', 'auto', journey);
       }
     }
 

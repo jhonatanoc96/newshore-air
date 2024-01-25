@@ -3,7 +3,7 @@
         <label>{{data.message}}</label>
     </div>
 
-    <div class="div-label">
+    <div class="div-label" *ngIf="data.type === 'success'">
         <label>
             A continuación se muestran los resultados de su consulta
         </label>
