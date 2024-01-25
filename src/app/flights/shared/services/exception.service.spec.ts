@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExceptionServiceTsService } from './exception.service.ts.service';
+import { ExceptionServiceTsService } from './exception.service';
 
 describe('ExceptionServiceTsService', () => {
   let service: ExceptionServiceTsService;

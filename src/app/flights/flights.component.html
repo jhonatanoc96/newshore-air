@@ -3,15 +3,18 @@
         <div class="title">NEW SHORE AIR</div>
         <div class="subtitle">Ingresa lugar de origen y lugar de destino para el viaje</div>
         <div class="input-container ic1">
-            <input (change)="setOrigin($event)" id="origin" class="input" type="text" placeholder=" " />
+            <input maxlength="3" (change)="setOrigin($event)" id="origin" class="input" type="text" placeholder=" " />
             <div class="cut"></div>
             <label for="origin" class="placeholder">Origen</label>
         </div>
         <div class="input-container ic2">
-            <input (change)="setDestination($event)" id="destination" class="input" type="text" placeholder=" " />
+            <input maxlength="3" (change)="setDestination($event)" id="destination" class="input" type="text"
+                placeholder=" " />
             <div class="cut"></div>
             <label for="destination" class="placeholder">Destino</label>
         </div>
-        <button type="text" class="submit">Enviar</button>
+        <div>
+            <button (click)="submit()" type="text" class="submit">Enviar</button>
+        </div>
     </div>
 </body>
