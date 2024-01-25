@@ -1,19 +1,20 @@
 body {
     align-items: center;
-    background-color: #000;
     display: flex;
     justify-content: center;
     height: 100vh;
+    background: linear-gradient(45deg, hsla(0, 0%, 0%, 1) 0%, hsl(0deg 0% 3.79%) 18%, hsl(0deg 0% 1.82%) 42%, hsl(0deg 4.94% 13.93%) 74%, hsla(0, 0%, 0%, 1) 100%);
 }
 
 .form {
     border-radius: 18px;
     box-shadow: inset 0px 0px 8px white, 0px 1px 1px black, 1px 2px 2px black, 2px 4px 4px black, 3px 6px 6px black, 3px 5px 21px white;
-    background: linear-gradient(135deg, hsla(0, 4%, 46%, 0.47) 0%, hsla(0, 0%, 100%, 0.78) 18%, hsla(0, 0%, 59%, 0.51) 39%, hsl(0, 0%, 34%) 62%, hsl(0, 0%, 62%) 80%, hsl(0, 0%, 50%) 100%);
+    background: linear-gradient( 135deg, hsla(0, 4%, 46%, 0.47) 0%, hsla(0, 0%, 100%, 0.78) 18%, hsla(0, 0%, 59%, 0.51) 39%, hsl(0, 0%, 34%) 62%, hsl(0, 0%, 62%) 80%, hsl(0, 0%, 50%) 100%);
     box-sizing: border-box;
     height: 500px;
     padding: 20px;
     width: 320px;
+    zoom: 0.7;
 }
 
 .title {
@@ -22,14 +23,24 @@ body {
     text-shadow: -1px -1px 1px black, -1px 0px 1px black, -1px 1px 1px black, 0px -1px 1px black, 0px 0px 1px black, 0px 1px 1px black, 1px -1px 1px black, 1px 0px 1px black, 1px 1px 1px black, 0px 1px 1px black, 1px 2px 2px black, 2px 4px 4px black, 3px 6px 6px black, 4px 8px 8px black, 0px 0px 15px white;
     font-size: 1.9rem;
     text-align: center;
+    margin: 1% 3% 0;
+    background: linear-gradient(243deg, hsl(0, 0%, 26.61%) 0%, hsl(0, 0%, 100%) 31%, hsl(0, 2.02%, 60.82%) 62%, hsl(0, 0%, 100%) 100%);
+    border-radius: 9px;
+    padding: 1% 2% 2%;
+    box-shadow: inset 0px 0px 3px black, inset 0px 0px 6px black, inset 0px 0px 9px black, inset 0px 0px 20px black, 0px 0px 3px black, 0px 0px 6px gray;
 }
 
 .subtitle {
-    color: #eee;
-    font-family: sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 10%;
+    border-radius: 9px;
+    padding: 3%;
+    background: #ffffff33;
+    box-shadow: 0px 0px 8px white;
+    text-shadow: 0px 0px 5px white;
 }
 
 .input-container {
@@ -47,16 +58,16 @@ body {
 }
 
 .input {
-    background-color: #303245;
-    border-radius: 12px;
-    border: 0;
-    box-sizing: border-box;
-    color: #eee;
-    font-size: 18px;
-    height: 100%;
-    outline: 0;
-    padding: 4px 20px 0;
-    width: 100%;
+    border: solid 1px black;
+    border-radius: 13px;
+    background: #ffffff;
+    box-shadow: inset 0px 0px 5px black, inset 0px 0px 13px black;
+    font-size: 1.6rem;
+    color: black;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px black, 0px 0px 12px #ffffff;
+    padding: 5% 0;
+    text-align: center;
     text-transform: uppercase;
 }
 
@@ -76,11 +87,6 @@ body {
     width: 50px;
 }
 
-.input:focus~.cut,
-.input:not(:placeholder-shown)~.cut {
-    transform: translateY(8px);
-}
-
 .placeholder {
     color: #65657b;
     font-family: sans-serif;
@@ -93,10 +99,6 @@ body {
     top: 20px;
 }
 
-.input:focus~.placeholder,
-.input:not(:placeholder-shown)~.placeholder {
-    transform: translateY(-30px) translateX(10px) scale(0.75);
-}
 
 .input:not(:placeholder-shown)~.placeholder {
     color: #808097;
@@ -107,19 +109,26 @@ body {
 }
 
 .submit {
-    background-color: #08d;
-    border-radius: 12px;
-    border: 0;
-    box-sizing: border-box;
-    color: #eee;
-    cursor: pointer;
-    font-size: 18px;
-    height: 50px;
-    margin-top: 38px;
+    font-size: 1.3rem;
+    margin-top: 12%;
+    border-radius: 7px;
+    font-weight: bold;
+    font-family: verdana;
+    padding: 1% 0;
+    box-shadow: inset 0px 0px 12px #fdfdfd, 0px 1px 1px black, 1px 2px 2px black, 2px 4px 4px black, 3px 6px 6px black, 3px 3px 6px white, 4px 4px 24px white !important;
+    background: linear-gradient(0deg, hsl(0, 0%, 10%) 0%, hsl(0, 0%, 15%) 17%, hsl(0, 0%, 5%) 34%, hsl(0, 0%, 0%) 50%, hsl(60, 0%, 39%) 76%, hsl(0, 0%, 17%) 82%, hsl(0, 0%, 0%) 100%);
+    text-transform: uppercase;
+    color: white;
     text-align: center;
-    width: 100%;
+    text-shadow: 0px 0px 2px #adadad, 0px 0px 7px #525252, 0px 1px 1px black, 1px 2px 2px black, 2px 4px 4px black, 3px 6px 6px black;
+    padding: 3% 0;
+    cursor: pointer;
 }
 
 .submit:active {
     background-color: #06b;
+}
+
+.div-button{
+    text-align: center;
 }

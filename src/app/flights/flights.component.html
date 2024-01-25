@@ -4,16 +4,14 @@
         <div class="subtitle">Ingresa lugar de origen y lugar de destino para el viaje</div>
         <div class="input-container ic1">
             <input maxlength="3" (change)="setOrigin($event)" id="origin" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="origin" class="placeholder">Origen</label>
+            <label for="origin" class="placeholder">ORIGEN</label>
         </div>
         <div class="input-container ic2">
             <input maxlength="3" (change)="setDestination($event)" id="destination" class="input" type="text"
                 placeholder=" " />
-            <div class="cut"></div>
-            <label for="destination" class="placeholder">Destino</label>
+            <label for="destination" class="placeholder">DESTINO</label>
         </div>
-        <div>
+        <div class="div-button">
             <button (click)="submit()" type="text" class="submit">Enviar</button>
         </div>
     </div>

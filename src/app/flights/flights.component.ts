@@ -7,6 +7,8 @@ import { DialogComponent } from '../dialog-component/dialog-component.component'
 import { FlightsService } from './shared/services/flights.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Transport } from './shared/models/transport.model';
+import { Flight } from './shared/models/flight.model';
 @Component({
   selector: 'app-flights',
   templateUrl: './flights.component.html',
@@ -19,6 +21,9 @@ export class FlightsComponent implements OnInit {
   public dialogObject: any;
   public origin: string = '';
   public destination: string = '';
+
+  public tranports: Transport[] = [];
+  public flights: Flight[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,12 +39,15 @@ export class FlightsComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     // Subscribe to store to get values of origin and destination
     this.places$ = this.store.pipe();
     this.places$.subscribe((data: any) => {
       console.log('OBTENIENDO VALOR DE ESTADO GLOBAL: ', data);
     });
+
+    await this.getFlights();
+
   }
 
   setOrigin(event: any) {
@@ -65,12 +73,39 @@ export class FlightsComponent implements OnInit {
       return this.openDialog('El origen y destino no pueden ser iguales', 'error');
     }
 
-    await this.getFlights();
-
   }
 
   async getFlights() {
-    const response = await this.http.get(`${environment.URL}/2`);
+    await this.http.get(`${environment.URL}/2`).subscribe((data: any) => {
+
+      // Iterate response to get transports and flights
+      data.forEach((transport: any) => {
+        // Validate if not exists
+        const obj = this.tranports.find((item: any) => item.flightNumber === transport.flightNumber);
+        if (!obj) {
+          this.tranports.push({
+            flightCarrier: transport.flightCarrier,
+            flightNumber: transport.flightNumber,
+          });
+
+          // Add flight information
+          this.flights.push({
+            transport: {
+              flightCarrier: transport.flightCarrier,
+              flightNumber: transport.flightNumber,
+            },
+            origin: transport.departureStation,
+            destination: transport.arrivalStation,
+            price: transport.price
+          });
+        }
+      });
+
+      console.log('VUELOS: ', this.flights);
+      console.log('TRANSPORTES: ', this.tranports);
+
+
+    });
 
 
 
