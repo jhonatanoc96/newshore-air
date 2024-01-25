@@ -1,27 +1,17 @@
-# NewshoreAir
+## Despliegue inicial
+# Versión de Angular CLI utilizada: ^17.1.1
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+-Clonar repositorio 'https://github.com/jhonatanoc96/newshore-air'.
+-Ejecutar `npm install`
+-Ejecutar `ng serve`
 
-## Development server
+## Temas pendientes por implementar
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Test unitarios.
+- Informar al usuario que su consulta no pudo ser procesada en caso de que no exista la ruta.
+- Implementación Front End del problema 4 - Selección de moneda. (Implementación de lado de back funcional, utilizando API de "https://onesimpleapi.com/api/exchange_rate" para realizar conversiones, sin embargo no se alcanzó a asociar la funcionalidad a ningún componente HTML).
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Notas
+-States Manager: Se está almacenando el origen y destino ingresado por el usuario en variables de estado, utilizado @ngrx/store
+-Interceptors: A todas las peticiones HTTP enviadas desde la aplicación, se está agregando un token genérico haciendo uso de un 'Interceptor', agregando un 'Authorization' a los headers.
+- Inyection Tokens: Las URL's y tokens utilizados en el código se están enviando por medio de Inyection tokens.
