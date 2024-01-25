@@ -12,27 +12,27 @@
         <div>
             <table>
                 <tr>
-                    <td>Origen</td>
-                    <td>{{data.journey.Origin}}</td>
+                    <td class="td-left">Origen</td>
+                    <td class="td-right">{{data.journey.Origin}}</td>
                 </tr>
                 <tr>
-                    <td>Destino</td>
-                    <td>{{data.journey.Destination}}</td>
+                    <td class="td-left">Destino</td>
+                    <td class="td-right">{{data.journey.Destination}}</td>
                 </tr>
                 <tr>
-                    <td>Precio</td>
-                    <td>{{data.journey.Price}}</td>
+                    <td class="td-left">Precio</td>
+                    <td class="td-right">{{data.journey.Price | currency:'USD':'symbol':'1.0-0'}}</td>
                 </tr>
                 <tr>
-                    <td>Vuelo directo</td>
-                    <td>{{data.journey.Flights.length === 1 ? 'Si' : 'No'}}</td>
+                    <td class="td-left">Vuelo directo</td>
+                    <td class="td-right">{{data.journey.Flights.length === 1 ? 'Si' : 'No'}}</td>
                 </tr>
                 <tr *ngIf="data.journey.Flights.length > 1">
-                    <td>Cantidad de escalas</td>
-                    <td>{{data.journey.Flights.length}}</td>
+                    <td class="td-left">Cantidad de escalas</td>
+                    <td class="td-right">{{data.journey.Flights.length}}</td>
                 </tr>
                 <tr>
-                    <td>Ruta:</td>
+                    <td class="last-td-left">Ruta:</td>
                     <td>
                         <div *ngFor="let journey of data.journey.Flights">
                             {{journey.origin}} - {{journey.destination}}

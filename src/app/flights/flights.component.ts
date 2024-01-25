@@ -12,6 +12,8 @@ import { Flight } from './shared/models/flight.model';
 import { Request } from './shared/interfaces/request.interface';
 import { URL } from './shared/tokens/url.token';
 import { Journey } from './shared/models/journey.model';
+import { URL_EXCHANGE_RATE } from './shared/tokens/url-exchange-rate.token';
+import { TOKEN_EXCHANGE_RATE } from './shared/tokens/token-exchange-rate';
 @Component({
   selector: 'app-flights',
   templateUrl: './flights.component.html',
@@ -47,7 +49,9 @@ export class FlightsComponent implements OnInit {
     public dialog: MatDialog,
     public flightsService: FlightsService,
     private http: HttpClient,
-    @Inject(URL) private url: string
+    @Inject(URL) private url: string,
+    @Inject(URL_EXCHANGE_RATE) private urlExchangeRate: string,
+    @Inject(TOKEN_EXCHANGE_RATE) private tokenExchangeRate: string,
   ) {
     this.form = this.formBuilder.group({
       origin: '',
@@ -154,7 +158,6 @@ export class FlightsComponent implements OnInit {
           // Validate if exists in second level
           const existsInSecondLevel = flightsFromDestinationSecondLevel.find((item: any) => item.destination === request.Destination);
 
-
           if (existsInSecondLevel) {
             flights.push(element);
             flights.push(existsInSecondLevel);
@@ -238,12 +241,22 @@ export class FlightsComponent implements OnInit {
 
       if (journey.Flights.length > 0) {
         this.journey = journey;
+
+        // Calculate conversion rate
+        // this.getConversionRate(this.tokenExchangeRate, 'EUR', this.journey.Price);
+        this.getConversionRate(this.tokenExchangeRate, 'USD', 'EUR', this.journey.Price);
+
         this.openDialog('Su consulta ha sido procesada', 'success', '500px', 'auto', journey);
       }
     }
 
   }
 
+  async getConversionRate(token: string, from_currency: string, to_currency: string, value: number){
+    await this.http.get(`${this.urlExchangeRate}?token=${token}&from_currency=${from_currency}&to_currency=${to_currency}&from_value=${value}`).subscribe((data: any) => {
+      console.log('CONVERSION RATE: ', data);
+    });
+  }
 
   async getFlights() {
     await this.http.get(`${this.url}/2`).subscribe((data: any) => {

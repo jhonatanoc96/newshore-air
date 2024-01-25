@@ -13,7 +13,6 @@ export class DialogComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    console.log('DATA: ', this.data);
     if(this.data && this.data.type) {
       this.type = this.data.type;
     }
