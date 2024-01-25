@@ -7,8 +7,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './dialog-component.component.css'
 })
 export class DialogComponent implements OnInit{
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string }) { }
+
+  public type = '';
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    console.log('DATA: ', this.data);
+    if(this.data && this.data.type) {
+      this.type = this.data.type;
+    }
+    
   }
 }

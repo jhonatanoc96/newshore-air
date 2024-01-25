@@ -25,7 +25,7 @@ body {
     box-shadow: 0px 0px 20px red;
     border-radius: 10px;
 
-    .div-content {
+    .div-content-error {
         width: 100%;
         height: 100%;
         display: flex;
@@ -39,6 +39,24 @@ body {
     }
 }
 
-.success-dialog{
+.success-dialog {
+    width: 500px;
+    height: 200px;
+    max-width: 80vw;
+    position: static;
+    box-shadow: 0px 0px 20px lime;
+    border-radius: 10px;
 
+    .div-content-success {
+        width: 100%;
+        height: 100%;
+        display: block;
+        align-items: center;
+        justify-content: center;
+        background: #b8f9b0;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-shadow: -1px -1px 1px black, -1px 0px 1px black, -1px 1px 1px black, 0px -1px 1px black, 0px 0px 1px black, 0px 1px 1px black, 1px -1px 1px black, 1px 0px 1px black, 1px 1px 1px black, 0px 1px 1px black, 1px 2px 2px black, 2px 4px 4px black, 3px 6px 6px black, 0px 0px 25px white;
+    }
 }

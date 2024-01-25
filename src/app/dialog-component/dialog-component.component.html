@@ -1,3 +1,45 @@
-<div class="div-content">
+<div class="div-content-error" *ngIf="data.type === 'error'">
     <label>{{data.message}}</label>
+</div>
+
+<div class="div-content-success" *ngIf="data.type === 'success'">
+    <div>
+        <label>
+            A continuación se muestran los resultados de su consulta
+        </label>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>Origen</td>
+                <td>{{data.journey.Origin}}</td>
+            </tr>
+            <tr>
+                <td>Destino</td>
+                <td>{{data.journey.Destination}}</td>
+            </tr>
+            <tr>
+                <td>Precio</td>
+                <td>{{data.journey.Price}}</td>
+            </tr>
+            <tr>
+                <td>Vuelo directo?</td>
+                <td>{{data.journey.Flights.length === 1 ? 'Si' : 'No'}}</td>
+            </tr>
+            <tr>
+                <td>Cantidad de escalas</td>
+                <td>{{data.journey.Flights.length === 1 ? 1 : data.journey.Flights.length}}</td>
+            </tr>
+            <tr>
+                <td>Ruta:</td>
+                <td>
+                    <div *ngFor="let journey of data.journey.Flights">
+                        {{journey.origin}} - {{journey.destination}}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
 </div>
