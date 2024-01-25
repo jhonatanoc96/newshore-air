@@ -73,6 +73,27 @@ export class FlightsComponent implements OnInit {
       return this.openDialog('El origen y destino no pueden ser iguales', 'error');
     }
 
+    // Validate if origin and destination are not equal to 3 characters
+    if (this.origin.length !== 3 || this.destination.length !== 3) {
+      return this.openDialog('El origen y destino deben ser de 3 caracteres', 'error');
+    }
+
+    // Validate if origin exists
+    const origin = this.flights.find((item: any) => item.origin === this.origin);
+
+    if (!origin) {
+      return this.openDialog('El origen no existe', 'error');
+    }
+
+    // Validate if destination exists
+    const destination = this.flights.find((item: any) => item.destination === this.destination);
+
+    if (!destination) {
+      return this.openDialog('El destino no existe', 'error');
+    }
+
+    //
+
   }
 
   async getFlights() {
@@ -104,37 +125,27 @@ export class FlightsComponent implements OnInit {
       console.log('VUELOS: ', this.flights);
       console.log('TRANSPORTES: ', this.tranports);
 
-
     });
-
-
-
-
-
-
   }
 
-  async openDialog(message: string, type: string) {
+  async openDialog(message: string, type: string, width: string = '500px', height: string = '150px') {
     // If there is a modal, close it
     if (this.dialogObject) {
       this.dialogObject.close();
     }
 
+    const panelClass = type === 'error' ? 'error-dialog' : 'success-dialog';
+
     // Open modal
     this.dialogObject = await this.dialog.open(DialogComponent, {
-      panelClass: 'centered-dialog',
+      panelClass,
       data: {
         message,
         type
       },
-      width: '500px',
-      height: '200px'
+      width,
+      height
     });
-
-    // Wait 4 seconds and close modal
-    // setTimeout(() => {
-    //   this.dialogObject.close();
-    // }, 5000);
 
   }
 
